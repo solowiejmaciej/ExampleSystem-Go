@@ -1,0 +1,82 @@
+version: '3.8'
+volumes:
+  redis_data: {}
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: users-api
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U root" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  redis:
+    image: 'docker.io/bitnami/redis'
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: root
+      REDIS_AOF_ENABLED: "no"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: [ "CMD-SHELL", "redis-cli ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+      RABBITMQ_DEFAULT_VHOST: my_vhost
+    healthcheck:
+      test: [ "CMD-SHELL", "rabbitmqctl node_health_check" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+        
+  users-api:
+    build: usersApi
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "host=postgres user=root password=root dbname=users-api sslmode=disable"
+      PORT: 3000
+      ENV: "development"
+      JWT_SECRET: "secret"
+      REDIS_URL: "redis:6379"
+      REDIS_PASSWORD: "root"
+      AMQP_SERVER_URL: "amqp://root:root@rabbitmq:5672/my_vhost"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://users-api/health"]
+      
+  notficator:
+    build: notificator
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    environment:
+      AMQP_SERVER_URL: "amqp://root:root@rabbitmq:5672/my_vhost"
+      DATABASE_URL: "host=postgres user=root password=root dbname=notificator sslmode=disable"
+

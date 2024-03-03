@@ -1,0 +1,19 @@
+time="2024-03-02T19:45:22+01:00" level=info msg="Application started..."
+time="2024-03-02T19:45:22+01:00" level=info msg="Database connected successfully"
+time="2024-03-02T19:45:24+01:00" level=info msg="[2024-03-02T18:45:24Z] 200 /api/token (102ms)" data_length=247 hostname=Maciejs-MacBook.local latency=102 request_id= status_code=200
+time="2024-03-02T19:45:45+01:00" level=info msg="[2024-03-02T18:45:45Z] 200 /api/token (98ms)" data_length=247 hostname=Maciejs-MacBook.local latency=98 request_id= status_code=200
+time="2024-03-02T19:45:46+01:00" level=info msg="[2024-03-02T18:45:46Z] 200 /api/token (106ms)" data_length=247 hostname=Maciejs-MacBook.local latency=106 request_id= status_code=200
+time="2024-03-02T19:45:47+01:00" level=info msg="[2024-03-02T18:45:47Z] 200 /api/token (104ms)" data_length=247 hostname=Maciejs-MacBook.local latency=104 request_id= status_code=200
+time="2024-03-02T19:45:47+01:00" level=info msg="[2024-03-02T18:45:47Z] 200 /api/token (112ms)" data_length=247 hostname=Maciejs-MacBook.local latency=112 request_id= status_code=200
+time="2024-03-02T19:45:48+01:00" level=info msg="[2024-03-02T18:45:48Z] 200 /api/token (104ms)" data_length=247 hostname=Maciejs-MacBook.local latency=104 request_id= status_code=200
+time="2024-03-02T19:45:48+01:00" level=info msg="[2024-03-02T18:45:48Z] 200 /api/token (100ms)" data_length=247 hostname=Maciejs-MacBook.local latency=100 request_id= status_code=200
+time="2024-03-02T19:45:49+01:00" level=info msg="[2024-03-02T18:45:49Z] 200 /api/token (93ms)" data_length=247 hostname=Maciejs-MacBook.local latency=93 request_id= status_code=200
+time="2024-03-02T19:45:51+01:00" level=info msg="[2024-03-02T18:45:51Z] 200 /api/token (104ms)" data_length=247 hostname=Maciejs-MacBook.local latency=104 request_id= status_code=200
+time="2024-03-02T19:45:51+01:00" level=info msg="[2024-03-02T18:45:51Z] 200 /api/token (99ms)" data_length=247 hostname=Maciejs-MacBook.local latency=99 request_id= status_code=200
+time="2024-03-02T19:45:52+01:00" level=info msg="[2024-03-02T18:45:52Z] 200 /api/token (101ms)" data_length=247 hostname=Maciejs-MacBook.local latency=101 request_id= status_code=200
+time="2024-03-02T19:45:53+01:00" level=info msg="[2024-03-02T18:45:53Z] 200 /api/token (102ms)" data_length=247 hostname=Maciejs-MacBook.local latency=102 request_id= status_code=200
+time="2024-03-02T19:45:53+01:00" level=info msg="[2024-03-02T18:45:53Z] 200 /api/token (102ms)" data_length=247 hostname=Maciejs-MacBook.local latency=102 request_id= status_code=200
+time="2024-03-02T19:45:54+01:00" level=info msg="[2024-03-02T18:45:54Z] 200 /api/token (96ms)" data_length=247 hostname=Maciejs-MacBook.local latency=96 request_id= status_code=200
+time="2024-03-02T19:45:54+01:00" level=info msg="[2024-03-02T18:45:54Z] 200 /api/token (100ms)" data_length=247 hostname=Maciejs-MacBook.local latency=100 request_id= status_code=200
+time="2024-03-02T19:45:55+01:00" level=info msg="[2024-03-02T18:45:55Z] 200 /api/token (104ms)" data_length=247 hostname=Maciejs-MacBook.local latency=104 request_id= status_code=200
+time="2024-03-02T19:45:55+01:00" level=info msg="[2024-03-02T18:45:55Z] 200 /api/token (103ms)" data_length=247 hostname=Maciejs-MacBook.local latency=103 request_id= status_code=200
