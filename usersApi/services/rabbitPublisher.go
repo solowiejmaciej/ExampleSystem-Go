@@ -2,14 +2,19 @@ package services
 
 import (
 	"encoding/json"
+	"github.com/google/uuid"
 	log "github.com/sirupsen/logrus"
 	"github.com/streadway/amqp"
+	"usersApi/events"
 	"usersApi/initializers"
-	"usersApi/models"
 )
 
-func PublishUserCreatedEvent(user models.User) {
-	var userJson, parsingError = json.Marshal(user)
+func PublishUserCreatedEvent(userId uint) {
+	var event = events.UserCreated{
+		EventId: uuid.New(),
+		UserId:  userId,
+	}
+	var userJson, parsingError = json.Marshal(event)
 	if parsingError != nil {
 		log.Error("Error while parsing user to json", parsingError)
 		return
@@ -18,8 +23,6 @@ func PublishUserCreatedEvent(user models.User) {
 		ContentType: "application/json",
 		Body:        userJson,
 	}
-
-	// Attempt to publish a message to the queue.
 	publishError := initializers.ChannelRabbitMQ.Publish(
 		"",      // exchange
 		"users", // queue name
@@ -33,4 +36,5 @@ func PublishUserCreatedEvent(user models.User) {
 	}
 
 	log.Info("User created event published successfully")
+	log.Info("Event: ", event.EventId, " User: ", event.UserId)
 }

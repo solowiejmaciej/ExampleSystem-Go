@@ -37,13 +37,14 @@ func AddUser(c *gin.Context) {
 		Password:    string(password),
 		PhoneNumber: body.PhoneNumber,
 	}
-	_, err = repositories.AddUser(user)
+	userId, err := repositories.AddUser(user)
+	log.Infof("User created with id: %v", userId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "User with provided email already exists"})
 		return
 	}
 
-	services.PublishUserCreatedEvent(user)
+	services.PublishUserCreatedEvent(userId)
 	c.JSON(http.StatusCreated, gin.H{"message": "User created successfully"})
 }
 

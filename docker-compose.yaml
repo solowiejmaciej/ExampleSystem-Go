@@ -69,7 +69,7 @@ services:
     healthcheck:
       test: ["CMD", "curl", "-f", "http://users-api/health"]
       
-  notficator:
+  notificator:
     build: notificator
     depends_on:
       postgres:

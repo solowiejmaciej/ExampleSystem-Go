@@ -23,7 +23,8 @@ func main() {
 	r.Use(ginlogrus.LoggerMiddleware(ginlogrus.LoggerMiddlewareParams{}))
 	r.GET("/api/health", func(c *gin.Context) { c.JSON(200, gin.H{"status": "ok"}) })
 	r.POST("/api/user", controllers.AddUser)
-	r.GET("/api/user/:userId", middleware.RequireToken, middleware.CachePage(time.Hour), controllers.GetUserById)
+	//r.GET("/api/user/:userId", middleware.RequireToken, middleware.CachePage(time.Hour), controllers.GetUserById)
+	r.GET("/api/user/:userId", middleware.CachePage(time.Hour), controllers.GetUserById)
 	r.POST("/api/token", controllers.GenerateToken)
 
 	r.GET("/api/rabbit", controllers.TestRabbitMQ)
